@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StartStory">
+            <connections>
+                <outlet property="cLengthAlert" destination="8K2-Hl-Eix" id="jjS-8H-bhz"/>
+                <outlet property="cLimitAlert" destination="rXY-yD-cd0" id="dLt-AT-28F"/>
+                <outlet property="cTitleAlert" destination="082-ux-uA4" id="cwO-uW-KHg"/>
+                <outlet property="chapterTitle" destination="yEx-vc-QG2" id="wff-zH-O9t"/>
+                <outlet property="editView" destination="pNl-QX-pfc" id="Mjc-nW-gdi"/>
+                <outlet property="featuredPromptButton" destination="6rs-oA-ZuI" id="8eg-KZ-JWD"/>
+                <outlet property="finishStoryButton" destination="4cX-gj-0WL" id="qNd-U3-BNH"/>
+                <outlet property="genreGradientBox" destination="REA-N8-Xyz" id="Pmv-yO-rur"/>
+                <outlet property="genreTable" destination="L5s-Vt-BmE" id="Uf8-Yf-Xvx"/>
+                <outlet property="genreView" destination="eZC-4w-INW" id="qyy-rl-7zr"/>
+                <outlet property="openSelect" destination="rd7-AT-2ux" id="bjq-AW-UfA"/>
+                <outlet property="sTitleAlert" destination="fVy-rV-vIO" id="SlK-Uv-dEr"/>
+                <outlet property="scrollContent" destination="oIt-a1-C3y" id="DeG-VX-SvO"/>
+                <outlet property="scrollView" destination="Y4q-HU-cvc" id="MVP-S9-DqV"/>
+                <outlet property="startStoryLabel" destination="Qs7-lW-rP3" id="NkG-ve-slT"/>
+                <outlet property="storyBox" destination="s4j-Ih-LYy" id="rvF-fc-zes"/>
+                <outlet property="storyTitle" destination="WKo-sf-x1W" id="TMj-dO-Zdu"/>
+                <outlet property="submitStoryButton" destination="euu-Bx-rob" id="hjw-Bp-61x"/>
+                <outlet property="tweetFinished" destination="fxO-Uo-U1j" id="ml1-Lg-eqD"/>
+                <outlet property="view" destination="1" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4q-HU-cvc">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </scrollView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxO-Uo-U1j" customClass="CSAnimationView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="finished_background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6cZ-eo-bMd">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        </imageView>
+                        <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2S5-Qb-3Rd">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YOUR STORY" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCd-Pw-gEA">
+                            <rect key="frame" x="45" y="181" width="230" height="59"/>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="28"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="HAS BEEN SUBMITTED!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ual-St-ygv">
+                            <rect key="frame" x="23" y="216" width="283" height="59"/>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="24"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logoWhite.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y8X-P9-0sV">
+                            <rect key="frame" x="115" y="83" width="90" height="90"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MjC-sb-ZPL">
+                            <rect key="frame" x="0.0" y="324" width="320" height="21"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YqK-u5-QGC">
+                                    <rect key="frame" x="8" y="-1" width="304" height="26"/>
+                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
+                                    <state key="normal" title="POST IT TO TWITTER!">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="tweetTapped:" destination="-1" eventType="touchUpInside" id="igD-w9-GQw"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AXB-qe-Bei">
+                            <rect key="frame" x="251" y="311" width="47" height="47"/>
+                            <state key="normal" image="twitterIcon.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="tweetTapped:" destination="-1" eventType="touchUpInside" id="AN5-sv-6Vm"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yt-QG-AVK">
+                            <rect key="frame" x="14" y="507" width="292" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="E8V-g4-jf4"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="29"/>
+                            <state key="normal" title="FINISHED">
+                                <color key="titleColor" red="0.71339465729999996" green="0.90451738910000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="finishedTweet:" destination="-1" eventType="touchUpInside" id="11L-dZ-Y4d"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="6yt-QG-AVK" secondAttribute="trailing" constant="14" id="Irj-6g-IFz"/>
+                        <constraint firstAttribute="centerX" secondItem="6yt-QG-AVK" secondAttribute="centerX" id="ebD-0O-bKt"/>
+                        <constraint firstAttribute="bottom" secondItem="6yt-QG-AVK" secondAttribute="bottom" constant="31" id="jGh-eJ-JbF"/>
+                        <constraint firstItem="6yt-QG-AVK" firstAttribute="leading" secondItem="fxO-Uo-U1j" secondAttribute="leading" constant="14" id="noj-Ba-AAD"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Y4q-HU-cvc" firstAttribute="top" secondItem="1" secondAttribute="top" id="6r6-05-LQf"/>
+                <constraint firstAttribute="bottom" secondItem="Y4q-HU-cvc" secondAttribute="bottom" id="87Q-0o-sFg"/>
+                <constraint firstItem="Y4q-HU-cvc" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Hu4-c7-YqG"/>
+                <constraint firstAttribute="bottom" secondItem="fxO-Uo-U1j" secondAttribute="bottom" id="MFn-mW-adr"/>
+                <constraint firstAttribute="trailing" secondItem="Y4q-HU-cvc" secondAttribute="trailing" id="ON5-Ix-1Y1"/>
+                <constraint firstItem="fxO-Uo-U1j" firstAttribute="top" secondItem="1" secondAttribute="top" id="cTh-Qt-FcZ"/>
+                <constraint firstItem="fxO-Uo-U1j" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="vh4-Jx-xGG"/>
+                <constraint firstAttribute="trailing" secondItem="fxO-Uo-U1j" secondAttribute="trailing" id="zPx-f2-eLe"/>
+            </constraints>
+        </view>
+        <view contentMode="scaleToFill" id="oIt-a1-C3y">
+            <rect key="frame" x="0.0" y="0.0" width="640" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="story.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="2Uh-NR-0m1">
+                    <rect key="frame" x="0.0" y="0.0" width="640" height="568"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pNl-QX-pfc">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2H-MZ-a0P">
+                            <rect key="frame" x="24" y="157" width="272" height="326"/>
+                            <subviews>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4j-Ih-LYy">
+                                    <rect key="frame" x="0.0" y="0.0" width="272" height="326"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="T3e-bN-DB6"/>
+                                    </connections>
+                                </textView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="START YOUR STORY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qs7-lW-rP3">
+                                    <rect key="frame" x="33" y="153" width="206" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="YHJ-CI-HLZ"/>
+                                        <constraint firstAttribute="width" constant="206" id="z1j-bW-8pu"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="16"/>
+                                    <color key="textColor" red="0.75764266304347827" green="0.75764266304347827" blue="0.75764266304347827" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="centerY" secondItem="Qs7-lW-rP3" secondAttribute="centerY" id="H2H-lG-tgu"/>
+                                <constraint firstItem="s4j-Ih-LYy" firstAttribute="leading" secondItem="h2H-MZ-a0P" secondAttribute="leading" id="Qgh-hW-rDB"/>
+                                <constraint firstItem="Qs7-lW-rP3" firstAttribute="leading" secondItem="h2H-MZ-a0P" secondAttribute="leading" constant="33" id="XeN-b6-N4M"/>
+                                <constraint firstItem="s4j-Ih-LYy" firstAttribute="top" secondItem="h2H-MZ-a0P" secondAttribute="top" id="arT-rG-FRy"/>
+                                <constraint firstAttribute="trailing" secondItem="s4j-Ih-LYy" secondAttribute="trailing" id="dUn-xP-6rs"/>
+                                <constraint firstItem="Qs7-lW-rP3" firstAttribute="centerX" secondItem="s4j-Ih-LYy" secondAttribute="centerX" id="dcB-sr-Plr"/>
+                                <constraint firstAttribute="bottom" secondItem="s4j-Ih-LYy" secondAttribute="bottom" id="qMh-No-b70"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cX-gj-0WL">
+                            <rect key="frame" x="0.0" y="505" width="320" height="58"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="58" id="Dcz-sS-3CJ"/>
+                                <constraint firstAttribute="width" constant="320" id="mYr-Kj-oRm"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="20"/>
+                            <state key="normal" title="FINISH CHAPTER">
+                                <color key="titleColor" red="0.71339465729999996" green="0.90451738910000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="finishStory:" destination="-1" eventType="touchUpInside" id="xvs-B0-p4u"/>
+                            </connections>
+                        </button>
+                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your chapter should be at least 200 characters" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8K2-Hl-Eix">
+                            <rect key="frame" x="24" y="486" width="280" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="280" id="PZg-hS-6f7"/>
+                                <constraint firstAttribute="height" constant="21" id="dRE-pZ-q6o"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="STORY TITLE" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WKo-sf-x1W">
+                            <rect key="frame" x="24" y="59" width="272" height="30"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="JfI-YE-iKQ"/>
+                            </connections>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CHAPTER TITLE" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yEx-vc-QG2">
+                            <rect key="frame" x="24" y="107" width="272" height="30"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="2tf-Uo-UfP"/>
+                            </connections>
+                        </textField>
+                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCd-ay-cuK">
+                            <rect key="frame" x="8" y="1" width="46" height="46"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                            <state key="normal" image="back.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="home:" destination="-1" eventType="touchUpInside" id="Fg1-NA-xrq"/>
+                            </connections>
+                        </button>
+                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="give your story a title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVy-rV-vIO">
+                            <rect key="frame" x="24" y="86" width="272" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="give your chapter a title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="082-ux-uA4">
+                            <rect key="frame" x="22" y="137" width="272" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6rs-oA-ZuI">
+                            <rect key="frame" x="58" y="108" width="200" height="30"/>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                            <state key="normal" title="FEATURED STORY PROMPT">
+                                <color key="titleColor" red="0.71339465729999996" green="0.90451738910000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="showPrompt:" destination="-1" eventType="touchUpInside" id="c3S-Ic-Y28"/>
+                            </connections>
+                        </button>
+                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You're getting close to the 700 word limit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXY-yD-cd0">
+                            <rect key="frame" x="24" y="137" width="272" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="4cX-gj-0WL" secondAttribute="bottom" constant="5" id="FDU-w2-Ohh"/>
+                        <constraint firstItem="h2H-MZ-a0P" firstAttribute="top" secondItem="pNl-QX-pfc" secondAttribute="top" constant="157" id="KYq-r3-TaE"/>
+                        <constraint firstItem="8K2-Hl-Eix" firstAttribute="top" secondItem="h2H-MZ-a0P" secondAttribute="bottom" constant="3" id="UiQ-Jh-FuC"/>
+                        <constraint firstAttribute="centerX" secondItem="8K2-Hl-Eix" secondAttribute="centerX" constant="-4" id="Y8N-pw-W30"/>
+                        <constraint firstAttribute="trailing" secondItem="h2H-MZ-a0P" secondAttribute="trailing" constant="24" id="kDd-TV-jeQ"/>
+                        <constraint firstAttribute="centerX" secondItem="h2H-MZ-a0P" secondAttribute="centerX" id="mEs-sl-LwB"/>
+                        <constraint firstItem="h2H-MZ-a0P" firstAttribute="leading" secondItem="pNl-QX-pfc" secondAttribute="leading" constant="24" id="oZd-7A-pwY"/>
+                        <constraint firstAttribute="bottom" secondItem="h2H-MZ-a0P" secondAttribute="bottom" constant="85" id="pdm-pa-gSV"/>
+                        <constraint firstAttribute="centerX" secondItem="4cX-gj-0WL" secondAttribute="centerX" id="vOQ-oP-M1P"/>
+                        <constraint firstAttribute="bottom" secondItem="8K2-Hl-Eix" secondAttribute="bottom" constant="61" id="zd4-uh-TdY"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZC-4w-INW">
+                    <rect key="frame" x="320" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euu-Bx-rob">
+                            <rect key="frame" x="0.0" y="505" width="320" height="58"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="320" id="KNg-O8-RGC"/>
+                                <constraint firstAttribute="height" constant="58" id="lzB-bM-Mgr"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="20"/>
+                            <state key="normal" title="SUBMIT STORY">
+                                <color key="titleColor" red="0.71339465729999996" green="0.90451738910000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="submitStory:" destination="-1" eventType="touchUpInside" id="ooM-Sw-el9"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEp-3A-USK">
+                            <rect key="frame" x="8" y="1" width="46" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="46" id="zI3-7B-D6U"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                            <state key="normal" image="back.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="back:" destination="-1" eventType="touchUpInside" id="oqe-ln-Vyh"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REA-N8-Xyz">
+                            <rect key="frame" x="10" y="85" width="300" height="365"/>
+                            <subviews>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="L5s-Vt-BmE">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="365"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="tintColor" red="0.71339465729999996" green="0.90451738910000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </tableView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="L5s-Vt-BmE" secondAttribute="trailing" id="04l-NW-zmY"/>
+                                <constraint firstItem="L5s-Vt-BmE" firstAttribute="leading" secondItem="REA-N8-Xyz" secondAttribute="leading" id="Qcs-Yh-FF5"/>
+                                <constraint firstAttribute="bottom" secondItem="L5s-Vt-BmE" secondAttribute="bottom" id="VgE-9q-5cW"/>
+                                <constraint firstItem="L5s-Vt-BmE" firstAttribute="top" secondItem="REA-N8-Xyz" secondAttribute="top" id="Wb7-Rj-jaG"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="select a genre for your story" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sh6-hj-Ydt">
+                            <rect key="frame" x="20" y="56" width="278" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="aic-2R-Kxk"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <segmentedControl opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="rd7-AT-2ux">
+                            <rect key="frame" x="98" y="468" width="123" height="29"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="123" id="Sko-vn-VSk"/>
+                                <constraint firstAttribute="height" constant="28" id="yA9-eE-gUx"/>
+                            </constraints>
+                            <segments>
+                                <segment title="open"/>
+                                <segment title="closed"/>
+                            </segments>
+                            <color key="tintColor" red="0.71339465729999996" green="0.90451738910000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="segmentedChartButtonChanged:" destination="-1" eventType="valueChanged" id="Vqk-fm-q3B"/>
+                            </connections>
+                        </segmentedControl>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="sh6-hj-Ydt" firstAttribute="leading" secondItem="eZC-4w-INW" secondAttribute="leading" constant="20" symbolic="YES" id="2vL-Kf-IqO"/>
+                        <constraint firstAttribute="bottom" secondItem="euu-Bx-rob" secondAttribute="bottom" constant="5" id="4wj-yk-9OK"/>
+                        <constraint firstItem="sh6-hj-Ydt" firstAttribute="centerX" secondItem="rd7-AT-2ux" secondAttribute="centerX" id="E7C-yW-rLI"/>
+                        <constraint firstItem="REA-N8-Xyz" firstAttribute="leading" secondItem="eZC-4w-INW" secondAttribute="leading" constant="10" id="RaX-Jf-Xse"/>
+                        <constraint firstItem="REA-N8-Xyz" firstAttribute="top" secondItem="sh6-hj-Ydt" secondAttribute="bottom" constant="8" symbolic="YES" id="XwB-oP-zhI"/>
+                        <constraint firstAttribute="centerX" secondItem="rd7-AT-2ux" secondAttribute="centerX" id="Y0n-W7-Lol"/>
+                        <constraint firstAttribute="bottom" secondItem="REA-N8-Xyz" secondAttribute="bottom" constant="118" id="Yun-ra-qHY"/>
+                        <constraint firstAttribute="centerX" secondItem="REA-N8-Xyz" secondAttribute="centerX" id="jek-Bu-6oR"/>
+                        <constraint firstAttribute="centerX" secondItem="euu-Bx-rob" secondAttribute="centerX" id="kTa-nE-alx"/>
+                        <constraint firstItem="REA-N8-Xyz" firstAttribute="top" secondItem="eZC-4w-INW" secondAttribute="top" constant="85" id="oJc-eu-YUd"/>
+                        <constraint firstItem="UEp-3A-USK" firstAttribute="leading" secondItem="eZC-4w-INW" secondAttribute="leading" constant="8" id="rNd-Kv-bS6"/>
+                        <constraint firstItem="UEp-3A-USK" firstAttribute="top" secondItem="eZC-4w-INW" secondAttribute="top" constant="1" id="sXq-ey-OVs"/>
+                        <constraint firstItem="sh6-hj-Ydt" firstAttribute="top" secondItem="UEp-3A-USK" secondAttribute="bottom" constant="9" id="ssk-aU-IdM"/>
+                        <constraint firstAttribute="bottom" secondItem="rd7-AT-2ux" secondAttribute="bottom" constant="72" id="vsm-QJ-Kho"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="2Uh-NR-0m1" secondAttribute="trailing" id="Czs-hq-0yx"/>
+                <constraint firstAttribute="trailing" secondItem="eZC-4w-INW" secondAttribute="trailing" id="FPb-aZ-5Jw"/>
+                <constraint firstItem="2Uh-NR-0m1" firstAttribute="leading" secondItem="oIt-a1-C3y" secondAttribute="leading" id="FmG-qg-Yhg"/>
+                <constraint firstItem="2Uh-NR-0m1" firstAttribute="top" secondItem="oIt-a1-C3y" secondAttribute="top" id="I35-Nf-UQf"/>
+                <constraint firstAttribute="bottom" secondItem="2Uh-NR-0m1" secondAttribute="bottom" id="JBQ-MD-2aG"/>
+                <constraint firstItem="eZC-4w-INW" firstAttribute="top" secondItem="oIt-a1-C3y" secondAttribute="top" id="K3P-HK-NgK"/>
+                <constraint firstAttribute="bottom" secondItem="pNl-QX-pfc" secondAttribute="bottom" id="PnB-mv-DRb"/>
+                <constraint firstItem="pNl-QX-pfc" firstAttribute="leading" secondItem="oIt-a1-C3y" secondAttribute="leading" id="RP5-7Y-mH0"/>
+                <constraint firstItem="pNl-QX-pfc" firstAttribute="top" secondItem="oIt-a1-C3y" secondAttribute="top" id="dp5-mr-Dyj"/>
+                <constraint firstAttribute="bottom" secondItem="eZC-4w-INW" secondAttribute="bottom" id="lqU-fK-97e"/>
+                <constraint firstItem="eZC-4w-INW" firstAttribute="leading" secondItem="pNl-QX-pfc" secondAttribute="trailing" id="t4s-R8-9eP"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="back.png" width="40" height="40"/>
+        <image name="finished_background.jpg" width="798" height="1418"/>
+        <image name="logoWhite.png" width="350" height="350"/>
+        <image name="story.jpg" width="640" height="568"/>
+        <image name="twitterIcon.png" width="185" height="185"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
