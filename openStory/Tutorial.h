@@ -17,9 +17,11 @@
     UIButton *skipButton;
     
 }
-
+@property(nonatomic, readonly) BOOL isPreparedToPlay;
+@property(nonatomic) float currentPlaybackRate;
 @property (nonatomic, strong) MPMoviePlayerController *player;
 @property (nonatomic, strong) IBOutlet UIView *movie;
 @property (nonatomic, strong) IBOutlet UILabel *tutorialCaption;
+@property(nonatomic) NSTimeInterval currentPlaybackTime;
 
 @end

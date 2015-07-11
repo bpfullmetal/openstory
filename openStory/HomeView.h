@@ -10,6 +10,7 @@
 #import "StartStory.h"
 #import "AddChapter.h"
 #import "ChapterRow.h"
+#import "FeedRow.h"
 #import "SignupView.h"
 #import "Settings.h"
 #import "MapStories.h"
@@ -46,6 +47,7 @@
     SignupView *signup;
     UIImagePickerController *imagePicker;
     ChapterRow *chapRow;
+    FeedRow *feedRow;
     StartStory *startStoryView;
     AddChapter *addChapterView;
     Settings *settingsView;
@@ -57,7 +59,6 @@
     //CLLocationManager *locationManager;
     
     NSArray *storyArray;
-    
     NSArray *currentStoryArray;
     NSArray *winnersArray;
     
@@ -73,6 +74,7 @@
     IBOutlet UIView *scrollContent;
     int chapterCount;
     IBOutlet UIView *tableMaskView;
+    IBOutlet UIView *feedMaskView;
     IBOutlet UITextView *chapterTextBox;
     IBOutlet UIButton *startStoryButton;
     IBOutlet UIButton *mapButton;
@@ -88,6 +90,9 @@
     IBOutlet UIButton *pdfButton;
     IBOutlet UIButton *publishStory;
     
+    // FEED VIEW
+    
+    IBOutlet UIView *feedView;
     
     // HOME VIEW
     int allStoriesLoadType;
@@ -150,9 +155,11 @@
 - (IBAction)goToMap:(id)sender;
 
 - (IBAction)reportStory:(id)sender;
+- (IBAction)goToFeed:(id)sender;
 
 
 @property (nonatomic, weak) IBOutlet UITableView *tableOfContents;
+@property (nonatomic, weak) IBOutlet UITableView *feedTable;
 
 
 @end

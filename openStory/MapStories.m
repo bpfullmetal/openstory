@@ -58,10 +58,9 @@ didUpdateUserLocation:
     NSString *locLong = [NSString stringWithFormat:@"%f", mapLocation.longitude];
     NSURLSession *locationsSession = [NSURLSession sharedSession];
     NSURLSessionDataTask *locationsTask = [locationsSession dataTaskWithURL:[NSURL URLWithString: [NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/getstoryloc.php?lati=%@&longi=%@", locLat, locLong]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        //NSString *chapterText = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+        
         dispatch_sync(dispatch_get_main_queue(), ^{
             
-            NSString *datastring = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             //NSLog(@"location data: %@", datastring);
             NSError *error = nil;
             NSArray *storyLocationArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &error];

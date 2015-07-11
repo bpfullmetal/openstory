@@ -188,7 +188,7 @@
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"user id"];
         NSString *post = [NSString stringWithFormat: @"name=%@&chapter=%@&text=%@", getSTitle, getCTitle, txtString];
         NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-        NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
         NSString *fId = [[NSString alloc]init];
         if([[[NSUserDefaults standardUserDefaults]objectForKey:@"storyType"] isEqualToString:@"new"]){
             fId = 0;

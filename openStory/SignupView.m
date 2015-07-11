@@ -196,7 +196,7 @@
     
     NSString *post = [NSString stringWithFormat: @"info=%@", forgotUserEmailField.text];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     
     NSMutableURLRequest *forgotUsernameRequest = [[NSMutableURLRequest alloc] init];
     
@@ -270,7 +270,7 @@
     
     NSString *post = [NSString stringWithFormat: @"info=%@", forgotPasswordField.text];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     
     NSMutableURLRequest *forgotPasswordRequest = [[NSMutableURLRequest alloc] init];
     
@@ -349,7 +349,7 @@
     
         NSString *post = [NSString stringWithFormat: @"loginfo=%@&pass=%@&token=%@", userLogin, userPass, token];
         NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-        NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
         
         NSMutableURLRequest *loginRequest = [[NSMutableURLRequest alloc] init];
         
@@ -410,7 +410,7 @@
     }
     NSString *post = [NSString stringWithFormat: @"email=%@", userEmail];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
         
         NSString *fullURL = @"http://www.fullmetalworkshop.com/openstory/getuserinfo.php";
         
@@ -480,7 +480,7 @@
     
     NSString *post = [NSString stringWithFormat: @"user=%@&email=%@&pass=%@&token=%@", suUser, suEmail, suPass, token];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     
     if(suPass.length >= 8 && suUser.length >= 8 && suEmail > 0){
     
@@ -916,7 +916,7 @@
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     
     UIImage *mask = [UIImage imageNamed:@"mask.png"];
-    UIImage *newImage = [self maskImage:image withMask:mask];
+    //UIImage *newImage = [self maskImage:image withMask:mask];
     
     NSData *imageData = UIImageJPEGRepresentation(image, 0.6);
     

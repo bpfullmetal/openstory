@@ -17,7 +17,6 @@
 - (void)prepareToPlay{
     
 }
-
 - (void)stop{
     [timer invalidate];
 }
@@ -41,7 +40,12 @@
 - (void)endSeeking{
     
 }
-
+- (MPContentItem *)contentItemAtIndexPath:(NSIndexPath *)indexPath{
+    return 0;
+}
+- (NSInteger)numberOfChildItemsAtIndexPath:(NSIndexPath *)indexPath{
+    return 0;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

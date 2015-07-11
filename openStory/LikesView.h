@@ -16,6 +16,7 @@
     IBOutlet UIButton *closeLikesButton;
     IBOutlet UIButton *likeIt;
     IBOutlet UILabel *likeCount;
+    NSString *userID;
 }
 
 @property (nonatomic, weak) IBOutlet UITableView *likesTable;

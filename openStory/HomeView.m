@@ -19,8 +19,9 @@
 @implementation HomeView
 
 @synthesize tableOfContents;
+@synthesize feedTable;
 
-#pragma mark - Get stories
+#pragma mark - Selected User From Likes
 
 - (void)goToSelectedUser{
     if (likesBox.likesBoxView.hidden == FALSE){
@@ -29,6 +30,8 @@
     [self getAllStories:selectedUser];
     [self profileBoxSlideDown];
 }
+
+#pragma mark - Get Stories of Selected  User
 
 - (void)getAllStories:(NSString *)userId{
     
@@ -47,7 +50,7 @@
             storyArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &error];
             if (storyArray.count > 0){
                 [self divideStories];
-                [scrollView setContentOffset:CGPointMake(320, 0) animated:YES];
+                [scrollView setContentOffset:CGPointMake(screenWidth * 2, 0) animated:YES];
             }else{
                 loader.hidden = TRUE;
                 [loader.spinner stopAnimating];
@@ -76,7 +79,7 @@
                     }
                     
                 }else if(allStoriesLoadType == 2){
-                    [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+                    [scrollView setContentOffset:CGPointMake(screenWidth, 0) animated:YES];
                 }
             }
             
@@ -350,9 +353,9 @@
         [storyScrollBox setTransform:CGAffineTransformMakeTranslation(0, 0)];
     }completion:^(BOOL done){
     }];
-    if (scrollView.contentOffset.x != 320){
+    if (scrollView.contentOffset.x != screenWidth * 2){
         [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            [scrollView setContentOffset:CGPointMake(320, 0) animated:NO];
+            [scrollView setContentOffset:CGPointMake(screenWidth * 2, 0) animated:NO];
         }completion:^(BOOL done){
         }];
         
@@ -438,9 +441,9 @@
                 selectedChapterOrder = [NSString stringWithFormat:@"%d", (int)chapterArray.count];
                 [tableOfContents reloadData];
                 if (loadMapStorySwitch == 1){
-                    [scrollView setContentOffset:CGPointMake(640, 0) animated:NO];
+                    [scrollView setContentOffset:CGPointMake(screenWidth*3, 0) animated:NO];
                 }else{
-                  [scrollView setContentOffset:CGPointMake(640, 0) animated:YES];
+                  [scrollView setContentOffset:CGPointMake(screenWidth*3, 0) animated:YES];
                 }
                 storyswitch = 1;
                 NSMutableArray *idList = [[NSMutableArray alloc]init];
@@ -533,7 +536,7 @@
             docController = [UIDocumentInteractionController interactionControllerWithURL:pdfUrl];
             docController.delegate = self;
             
-            BOOL isValid = [docController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
+            //BOOL isValid = [docController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
             
         });
     }];
@@ -581,14 +584,30 @@
 #pragma mark - Table View
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return chapterArray.count;
+    if (tableView == tableOfContents){
+        return chapterArray.count;
+    }else{
+        return feedInfoArray.count;
+    }
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int height = 60;
+    if (tableView == feedTable){
+        height = 76;
+    }
+    return height;
+}
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (tableView == tableOfContents){ // IF THIS IS THE TABLE OF CONTENTS TABLE
     UINib *nib = [UINib nibWithNibName:@"ChapterRow" bundle:nil];
-    [self.tableOfContents registerNib:nib forCellReuseIdentifier:@"chapterRow"];
-    chapRow = [self.tableOfContents dequeueReusableCellWithIdentifier:@"chapterRow" forIndexPath:indexPath];
+    [tableView registerNib:nib forCellReuseIdentifier:@"chapterRow"];
+    chapRow = [tableView dequeueReusableCellWithIdentifier:@"chapterRow" forIndexPath:indexPath];
     chapRow.backgroundColor = [UIColor clearColor];
     NSDictionary *item = [chapterArray objectAtIndex:indexPath.row];
     chapRow.chapterRowName.text = [[item objectForKey:@"chapter_name"] uppercaseString];
@@ -600,28 +619,10 @@
     [chapRow.chapterRowUser.layer setMasksToBounds:YES];
     NSURL *ImageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/userimages/%@_userimage.jpg", [item objectForKey:@"chapter_user"]]];
     
-    [chapRow.chapterRowUser setImageWithURL:ImageURL placeholderImage:[UIImage imageNamed:@"placeHolder.png"]];
-    
-    
-    
-    //[self downloadImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/userimages/%@_userimage.jpg", [item objectForKey:@"chapter_user"]]] completionBlock:^(BOOL succeeded, UIImage *image){
-        
-        /*if (succeeded) {
-        UIImage *mask = [UIImage imageNamed:@"mask.png"];
-        UIImage *newImage = [self maskImage:image withMask:mask];
-        if (newImage){
-            chapRow.chapterRowUser.image = newImage;
-        }else{
-            chapRow.chapterRowUser.image = [UIImage imageNamed:@"placeHolder.png"];
-        }
-        }*/
-        
-     //   }];
-    
+    [chapRow.chapterRowUser sd_setImageWithURL:ImageURL placeholderImage:[UIImage imageNamed:@"placeHolder.png"]];
     
     chapRow.chapterRowUser.contentMode = UIViewContentModeScaleAspectFill;
     chapRow.chapterRowUser.clipsToBounds = YES;
-    
     
     UIButton *profileButton = [[UIButton alloc]initWithFrame:CGRectMake(261, 6, 50, 50)];
     
@@ -653,12 +654,65 @@
         [deleteButton setTag:buttonId];
         [chapRow.storyRowView insertSubview:deleteButton aboveSubview:chapRow.chapterRowUser];
     }
+        
+        return chapRow;
+        
+    }else{ // TABLE VIEW IS FEED TABLE
+        UINib *nib = [UINib nibWithNibName:@"FeedRow" bundle:nil];
+        [tableView registerNib:nib forCellReuseIdentifier:@"feedRow"];
+        feedRow = [tableView dequeueReusableCellWithIdentifier:@"feedRow" forIndexPath:indexPath];
+        feedRow.backgroundColor = [UIColor clearColor];
+        NSArray *sortedArray = [feedInfoArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            return [[obj2 valueForKey:@"uDate"] compare:[obj1 valueForKey:@"uDate"]];
+        }];
+        NSDictionary *item = [sortedArray objectAtIndex:indexPath.row];
+        feedRow.feedRowAuthor.text = [[item objectForKey:@"userName"]uppercaseString];
+        if([[item objectForKey:@"userId"] isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"user id"]]){
+            feedRow.feedRowAuthor.text = @"YOU";
+        }
+        
+        if ([[item objectForKey:@"type"] isEqualToString: @"add"]){
+           feedRow.feedRowDetails.text = [NSString stringWithFormat:@"Added a chapter called %@",[item objectForKey:@"chapterName"]];
+        }else if([[item objectForKey:@"type"]  isEqualToString:@"like"]){
+            if ([[item objectForKey:@"likeeId"] isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"user id"]]){
+                feedRow.feedRowDetails.text = [NSString stringWithFormat:@"Liked your chapter: %@", [item objectForKey:@"chapterName"]];
+            }else{
+                feedRow.feedRowDetails.text = [NSString stringWithFormat:@"Liked %@'s chapter: %@", [item objectForKey:@"likeeName"], [item objectForKey:@"chapterName"]];
+            }
+        }
+        
+        NSString *feedDate = [item objectForKey:@"date"];
+        feedRow.feedRowDate.text = [feedDate uppercaseString];
+        //NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:[item objectForKey:@"chapter_user_image"] options:0];
+        feedRow.backgroundColor=[UIColor clearColor];
+        [feedRow.feedRowUser.layer setCornerRadius:25];
+        [feedRow.feedRowUser.layer setMasksToBounds:YES];
+        NSURL *ImageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/userimages/%@_userimage.jpg", [item objectForKey:@"userId"]]];
+        
+        [feedRow.feedRowUser sd_setImageWithURL:ImageURL placeholderImage:[UIImage imageNamed:@"placeHolder.png"]];
+        
+        feedRow.feedRowUser.contentMode = UIViewContentModeScaleAspectFill;
+        feedRow.feedRowUser.clipsToBounds = YES;
+        
+        UIButton *profileButton = [[UIButton alloc]initWithFrame:CGRectMake(261, 6, 50, 50)];
+        
+        [profileButton addTarget:self
+                          action:@selector(viewProfile:)
+                forControlEvents:UIControlEventTouchUpInside];
+        
+        int buttonId = [[item objectForKey:@"userId"]intValue];
+        
+        [profileButton setTag:buttonId];
+        [feedRow.feedRowView insertSubview:profileButton aboveSubview:feedRow.feedRowUser];
+        
+        return feedRow;
+    }
     
-    return chapRow;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView != feedTable){
     [loader loadingmessage:@"getting chapter"];
     [loader.spinner startAnimating];
     loader.hidden = FALSE;
@@ -671,6 +725,7 @@
         reportChapter.hidden = true;
     }else{
         reportChapter.hidden = false;
+    }
     }
     
 }
@@ -771,7 +826,7 @@
     chapterNameLabel.text = cName;
     chapterTextBox.text = cText;
     chapterTextBox.textColor = [UIColor whiteColor];
-    [scrollView setContentOffset:CGPointMake(960, 0) animated:YES];
+    [scrollView setContentOffset:CGPointMake(screenWidth*4, 0) animated:YES];
     [[NSUserDefaults standardUserDefaults]setObject:@"0" forKey:@"fid"];
     [self getLikes];
 }
@@ -825,22 +880,22 @@
 }
 
 - (IBAction)backHome:(id)sender{
-    [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    [scrollView setContentOffset:CGPointMake(screenWidth, 0) animated:YES];
 }
 
 - (IBAction)backToStories:(id)sender{
         if (loadMapStorySwitch == 1){
-            [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+            [scrollView setContentOffset:CGPointMake(screenWidth, 0) animated:YES];
         }else{
-            [scrollView setContentOffset:CGPointMake(320, 0) animated:YES];
+            [scrollView setContentOffset:CGPointMake(screenWidth*2, 0) animated:YES];
         }
 }
 
 - (IBAction)backToChapters:(id)sender{
     if(storyswitch == 2){
-         [scrollView setContentOffset:CGPointMake(320, 0) animated:YES];
+         [scrollView setContentOffset:CGPointMake(screenWidth*2, 0) animated:YES];
     }else{
-         [scrollView setContentOffset:CGPointMake(640, 0) animated:YES];
+         [scrollView setContentOffset:CGPointMake(screenWidth*3, 0) animated:YES];
     }
 }
 
@@ -1032,7 +1087,7 @@
     NSURLSessionDataTask *skipTask = [skipSession dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/skipchapter.php?uid=%@&sid=%@", userID, selectedStory]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         dispatch_sync(dispatch_get_main_queue(), ^{
             loadMapStorySwitch = 0;
-            [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+            [scrollView setContentOffset:CGPointMake(screenWidth, 0) animated:YES];
 
         });
     }];
@@ -1267,6 +1322,37 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
     
 }
 
+- (IBAction)goToFeed:(id)sender{
+    [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    [self getFeed];
+}
+
+- (void)getFeed{
+    NSString *fullURL = [NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/getfeed.php?user=%@", userID];
+    
+    NSURLSession *feedSession = [NSURLSession sharedSession];
+    NSURLSessionDataTask *feedTask = [feedSession dataTaskWithURL:[NSURL URLWithString:fullURL] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            NSError *error = nil;
+            feedInfoArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &error];
+            //NSDictionary *feedDictionary = [feedInfoArray objectAtIndex:0];
+            NSString *datastring = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"data: %@", datastring);
+            feedTable.delegate = self;
+            feedTable.dataSource = self;
+            [feedTable reloadData];
+            //NSString *feed = [feedDictionary objectForKey:@"points"];
+            //NSMutableArray *features = [[NSMutableArray alloc]initWithArray:[feedDictionary objectForKey:@"features"]];
+            //[[NSUserDefaults standardUserDefaults]setObject:features forKey:@"allFeatures"];
+            //[[NSUserDefaults standardUserDefaults] setObject:feed forKey:@"userpoints"];
+            //[[NSUserDefaults standardUserDefaults] setObject:[feedDictionary objectForKey:@"storypoints"] forKey:@"storypoints"];
+        });
+    }];
+    
+    [feedTask resume];
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -1279,6 +1365,8 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 
     screenHeight = [[UIScreen mainScreen] bounds].size.height;
     screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    
+    
     
     purchase = [[PurchaseItem alloc]init];
     startStoryView = [[StartStory alloc]initWithNibName:@"StartStory" bundle:nil];
@@ -1299,12 +1387,13 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
     
         [profileBoxView setFrame:CGRectMake(0, screenHeight, screenWidth, screenHeight)];
         [scrollView setFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
-        [scrollContent setFrame:CGRectMake(0, 0, screenWidth*4, screenHeight)];
-        [homeView setFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
-        [authorView setFrame:CGRectMake(screenWidth, 0, screenWidth, screenHeight)];
-        [tableOfContentsView setFrame:CGRectMake(screenWidth*2, 0, screenWidth, screenHeight)];
-        [chapterTextView setFrame:CGRectMake(screenWidth*3, 0, screenWidth, screenHeight)];
+        [scrollContent setFrame:CGRectMake(0, 0, screenWidth*5, screenHeight)];
+        [homeView setFrame:CGRectMake(screenWidth, 0, screenWidth, screenHeight)];
+        [authorView setFrame:CGRectMake(screenWidth*2, 0, screenWidth, screenHeight)];
+        [tableOfContentsView setFrame:CGRectMake(screenWidth*3, 0, screenWidth, screenHeight)];
+        [chapterTextView setFrame:CGRectMake(screenWidth*4, 0, screenWidth, screenHeight)];
 
+        [scrollView setContentOffset:CGPointMake(screenWidth, 0) animated:NO];
         [self updateViewConstraints];
     
     likesBox = [[LikesView alloc]initWithNibName:@"LikesView" bundle:nil];
@@ -1393,6 +1482,24 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
                           [NSNumber numberWithFloat:1],
                           nil];
     tableMaskView.layer.mask = gradient;
+    
+    feedTable.backgroundColor = [UIColor clearColor];
+    
+    CAGradientLayer *feedGradient = [CAGradientLayer layer];
+    feedGradient.frame = tableMaskView.bounds;
+    feedGradient.colors = [NSArray arrayWithObjects:
+                       (__bridge id)UIColor.clearColor.CGColor,
+                       UIColor.whiteColor.CGColor,
+                       UIColor.whiteColor.CGColor,
+                       UIColor.clearColor.CGColor,
+                       nil];
+    feedGradient.locations = [NSArray arrayWithObjects:
+                          [NSNumber numberWithFloat:0],
+                          [NSNumber numberWithFloat:1.0/16],
+                          [NSNumber numberWithFloat:15.0/16],
+                          [NSNumber numberWithFloat:1],
+                          nil];
+    feedMaskView.layer.mask = feedGradient;
     
     
     

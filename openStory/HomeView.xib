@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeView">
@@ -14,6 +14,9 @@
                 <outlet property="chapterTextBox" destination="9GA-0D-0dZ" id="nw3-cI-BGF"/>
                 <outlet property="chapterTextView" destination="d62-w1-bhf" id="YKu-0w-i0f"/>
                 <outlet property="colorBox" destination="PNz-rt-R8D" id="EdK-9M-M0B"/>
+                <outlet property="feedMaskView" destination="Bo9-wW-rKV" id="dU1-eV-uxR"/>
+                <outlet property="feedTable" destination="JlS-WN-9XA" id="iRz-t6-edG"/>
+                <outlet property="feedView" destination="iBw-e0-u8D" id="DVT-i4-1e8"/>
                 <outlet property="gotStory" destination="to9-fq-59e" id="dYe-4v-38C"/>
                 <outlet property="homeView" destination="VYk-z9-hls" id="agP-zG-uTj"/>
                 <outlet property="mapButton" destination="htU-v3-n0K" id="N6J-jY-ieN"/>
@@ -72,14 +75,63 @@
             </connections>
         </view>
         <view contentMode="scaleToFill" id="JPA-Xh-G0Z">
-            <rect key="frame" x="0.0" y="0.0" width="1280" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="1600" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="home.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Kjr-AS-ZMb">
-                    <rect key="frame" x="-50" y="-65" width="1330" height="702"/>
+                    <rect key="frame" x="0.0" y="-65" width="1600" height="845"/>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VYk-z9-hls">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBw-e0-u8D">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FEED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Osz-Lc-FPg">
+                            <rect key="frame" x="8" y="12" width="304" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="u23-vt-keO"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="18"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bo9-wW-rKV">
+                            <rect key="frame" x="0.0" y="65" width="320" height="453"/>
+                            <subviews>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="60" sectionHeaderHeight="50" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="JlS-WN-9XA">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
+                                    <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
+                                    <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </tableView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="JlS-WN-9XA" firstAttribute="leading" secondItem="Bo9-wW-rKV" secondAttribute="leading" id="42B-fa-Uqe"/>
+                                <constraint firstItem="JlS-WN-9XA" firstAttribute="top" secondItem="Bo9-wW-rKV" secondAttribute="top" id="ERA-QK-Vne"/>
+                                <constraint firstAttribute="bottom" secondItem="JlS-WN-9XA" secondAttribute="bottom" constant="53" id="Mpy-1t-K1i"/>
+                                <constraint firstAttribute="trailing" secondItem="JlS-WN-9XA" secondAttribute="trailing" id="fWJ-hE-aWo"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9b-P7-MOh">
+                            <rect key="frame" x="271" y="5" width="46" height="46"/>
+                            <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                            <state key="normal" title="BACK" image="forward.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="backHome:" destination="-1" eventType="touchUpInside" id="W9E-oo-VuO"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Osz-Lc-FPg" firstAttribute="leading" secondItem="iBw-e0-u8D" secondAttribute="leading" constant="8" id="4cx-wS-sJC"/>
+                        <constraint firstAttribute="bottom" secondItem="Bo9-wW-rKV" secondAttribute="bottom" constant="50" id="ImM-dy-YVG"/>
+                        <constraint firstItem="Bo9-wW-rKV" firstAttribute="top" secondItem="iBw-e0-u8D" secondAttribute="top" constant="65" id="Nje-cK-0GJ"/>
+                        <constraint firstItem="Bo9-wW-rKV" firstAttribute="leading" secondItem="iBw-e0-u8D" secondAttribute="leading" id="Y1S-Gy-r2f"/>
+                        <constraint firstAttribute="trailing" secondItem="Bo9-wW-rKV" secondAttribute="trailing" id="e2c-Io-vHU"/>
+                        <constraint firstItem="Osz-Lc-FPg" firstAttribute="top" secondItem="iBw-e0-u8D" secondAttribute="top" constant="12" id="hP6-Gx-GPk"/>
+                        <constraint firstAttribute="trailing" secondItem="Osz-Lc-FPg" secondAttribute="trailing" constant="8" id="z5q-mf-S8b"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VYk-z9-hls">
+                    <rect key="frame" x="320" y="0.0" width="320" height="568"/>
                     <subviews>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8SI-oK-PJA">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -93,6 +145,69 @@
                                     </state>
                                     <connections>
                                         <action selector="goToMap:" destination="-1" eventType="touchUpInside" id="NpU-MS-Y2c"/>
+                                    </connections>
+                                </button>
+                                <view alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zXz-lZ-pJy">
+                                    <rect key="frame" x="0.0" y="304" width="320" height="21"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbd-Fm-gZX">
+                                    <rect key="frame" x="35" y="294" width="41" height="41"/>
+                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                    <state key="normal" image="checkstories.png">
+                                        <color key="titleColor" red="0.71339465729999996" green="0.90451738910000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="checkForStory:" destination="-1" eventType="touchUpInside" id="CeK-5i-tCg"/>
+                                    </connections>
+                                </button>
+                                <button hidden="YES" opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="to9-fq-59e">
+                                    <rect key="frame" x="88" y="301" width="215" height="30"/>
+                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
+                                    <state key="normal" title="YOU HAVE A STORY WAITING">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="goToStory:" destination="-1" eventType="touchUpInside" id="CJk-fe-VO4"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PlX-Vy-eEG">
+                                    <rect key="frame" x="93" y="301" width="219" height="30"/>
+                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
+                                    <state key="normal" title="CHECK FOR STORIES">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="checkForStory:" destination="-1" eventType="touchUpInside" id="MZ3-ip-2Wg"/>
+                                    </connections>
+                                </button>
+                                <view alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Qw-7S-FwF">
+                                    <rect key="frame" x="0.0" y="389" width="320" height="21"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbb-4Q-NWq">
+                                    <rect key="frame" x="35" y="379" width="41" height="41"/>
+                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
+                                    <state key="normal" image="feedButton.png">
+                                        <color key="titleColor" red="0.71339465729999996" green="0.90451738910000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="goToFeed:" destination="-1" eventType="touchUpInside" id="cDX-4n-y51"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" alpha="0.60000002384185791" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHs-zj-Q1I">
+                                    <rect key="frame" x="93" y="386" width="219" height="30"/>
+                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
+                                    <state key="normal" title="LOCAL FEED">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="goToFeed:" destination="-1" eventType="touchUpInside" id="6mb-ij-9ql"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -194,27 +309,12 @@
                                 <action selector="logout:" destination="-1" eventType="touchUpInside" id="eEa-qF-IF9"/>
                             </connections>
                         </button>
-                        <view alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zXz-lZ-pJy">
-                            <rect key="frame" x="0.0" y="313" width="320" height="21"/>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbd-Fm-gZX">
-                            <rect key="frame" x="240" y="303" width="41" height="41"/>
-                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
-                            <state key="normal" image="checkstories.png">
-                                <color key="titleColor" red="0.71339465729999996" green="0.90451738910000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="checkForStory:" destination="-1" eventType="touchUpInside" id="CeK-5i-tCg"/>
-                            </connections>
-                        </button>
                         <view alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ITq-wP-gcM">
-                            <rect key="frame" x="0.0" y="367" width="320" height="21"/>
+                            <rect key="frame" x="0.0" y="347" width="320" height="21"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zs-lG-yaI">
-                            <rect key="frame" x="240" y="358" width="41" height="41"/>
+                            <rect key="frame" x="240" y="338" width="41" height="41"/>
                             <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
                             <state key="normal" image="dailyStory.png">
                                 <color key="titleColor" red="0.71339465725806439" green="0.90451738911290325" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -225,7 +325,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WTG-ue-dca">
-                            <rect key="frame" x="10" y="363" width="209" height="30"/>
+                            <rect key="frame" x="10" y="343" width="209" height="30"/>
                             <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
                             <state key="normal" title="DAILY STORY">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -244,28 +344,6 @@
                             </state>
                             <connections>
                                 <action selector="seeAllStories:" destination="-1" eventType="touchUpInside" id="6Qw-Xd-xQe"/>
-                            </connections>
-                        </button>
-                        <button hidden="YES" opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="to9-fq-59e">
-                            <rect key="frame" x="3" y="310" width="215" height="30"/>
-                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
-                            <state key="normal" title="YOU HAVE A STORY WAITING">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="goToStory:" destination="-1" eventType="touchUpInside" id="CJk-fe-VO4"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PlX-Vy-eEG">
-                            <rect key="frame" x="-1" y="310" width="219" height="30"/>
-                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
-                            <state key="normal" title="CHECK FOR STORIES">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="checkForStory:" destination="-1" eventType="touchUpInside" id="MZ3-ip-2Wg"/>
                             </connections>
                         </button>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OPEN STORY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hby-wA-VT2">
@@ -302,7 +380,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdl-ru-Qlr">
-                    <rect key="frame" x="320" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="640" y="0.0" width="320" height="568"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M7X-OQ-o6b">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -409,7 +487,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rJf-fM-JEe">
-                    <rect key="frame" x="640" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="960" y="0.0" width="320" height="568"/>
                     <subviews>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fsh-M5-mJ4">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -480,20 +558,15 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="fET-pR-9yP" secondAttribute="trailing" id="JmD-zH-Q9m"/>
-                        <constraint firstAttribute="trailing" secondItem="fET-pR-9yP" secondAttribute="trailing" id="RVa-GN-BzI"/>
                         <constraint firstItem="fET-pR-9yP" firstAttribute="leading" secondItem="rJf-fM-JEe" secondAttribute="leading" id="Rx4-kZ-LNF"/>
                         <constraint firstItem="fET-pR-9yP" firstAttribute="top" secondItem="rJf-fM-JEe" secondAttribute="top" constant="91" id="XkL-zN-ixT"/>
-                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fET-pR-9yP" secondAttribute="bottom" constant="77" id="YJt-8u-MeP"/>
                         <constraint firstAttribute="width" constant="320" id="ZGo-t2-nQC"/>
-                        <constraint firstItem="fET-pR-9yP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="rJf-fM-JEe" secondAttribute="top" constant="91" id="ZS9-Zy-ABQ"/>
-                        <constraint firstItem="fET-pR-9yP" firstAttribute="leading" secondItem="rJf-fM-JEe" secondAttribute="leading" id="p5F-W9-tBw"/>
                         <constraint firstAttribute="bottom" secondItem="fET-pR-9yP" secondAttribute="bottom" constant="77" id="veR-f7-TFE"/>
                         <constraint firstItem="fET-pR-9yP" firstAttribute="leading" secondItem="rJf-fM-JEe" secondAttribute="leading" id="wAA-4Q-sH9"/>
-                        <constraint firstAttribute="trailing" secondItem="fET-pR-9yP" secondAttribute="trailing" id="zr1-y2-2zQ"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d62-w1-bhf">
-                    <rect key="frame" x="960" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="1280" y="0.0" width="320" height="568"/>
                     <subviews>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" editable="NO" text="Story text" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9GA-0D-0dZ">
                             <rect key="frame" x="20" y="90" width="280" height="372"/>
@@ -541,17 +614,20 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="d62-w1-bhf" firstAttribute="leading" secondItem="rJf-fM-JEe" secondAttribute="trailing" id="1sg-Lp-IQ8"/>
+                <constraint firstItem="iBw-e0-u8D" firstAttribute="top" secondItem="JPA-Xh-G0Z" secondAttribute="top" id="28v-Y1-W9r"/>
                 <constraint firstItem="xdl-ru-Qlr" firstAttribute="top" secondItem="JPA-Xh-G0Z" secondAttribute="top" id="5ML-EK-Oc3"/>
                 <constraint firstAttribute="bottom" secondItem="rJf-fM-JEe" secondAttribute="bottom" id="5rx-zJ-JFR"/>
+                <constraint firstItem="VYk-z9-hls" firstAttribute="leading" secondItem="iBw-e0-u8D" secondAttribute="trailing" id="8dc-gA-e4a"/>
                 <constraint firstItem="rJf-fM-JEe" firstAttribute="leading" secondItem="xdl-ru-Qlr" secondAttribute="trailing" id="A03-Lr-e4c"/>
                 <constraint firstAttribute="trailing" secondItem="d62-w1-bhf" secondAttribute="trailing" id="EXC-8z-hwQ"/>
                 <constraint firstItem="xdl-ru-Qlr" firstAttribute="leading" secondItem="VYk-z9-hls" secondAttribute="trailing" id="LFI-lM-ubQ"/>
-                <constraint firstItem="VYk-z9-hls" firstAttribute="leading" secondItem="JPA-Xh-G0Z" secondAttribute="leading" id="PMm-RR-8Kd"/>
                 <constraint firstItem="rJf-fM-JEe" firstAttribute="top" secondItem="JPA-Xh-G0Z" secondAttribute="top" id="QGN-A1-o78"/>
                 <constraint firstItem="rJf-fM-JEe" firstAttribute="leading" secondItem="xdl-ru-Qlr" secondAttribute="trailing" id="ZsR-sF-WOT"/>
+                <constraint firstAttribute="bottom" secondItem="iBw-e0-u8D" secondAttribute="bottom" id="cix-m0-XIg"/>
                 <constraint firstAttribute="bottom" secondItem="d62-w1-bhf" secondAttribute="bottom" id="h3i-cG-Lz5"/>
                 <constraint firstAttribute="bottom" secondItem="VYk-z9-hls" secondAttribute="bottom" id="kMw-RZ-k8G"/>
                 <constraint firstItem="VYk-z9-hls" firstAttribute="top" secondItem="JPA-Xh-G0Z" secondAttribute="top" id="nAP-Pm-O7k"/>
+                <constraint firstItem="iBw-e0-u8D" firstAttribute="leading" secondItem="JPA-Xh-G0Z" secondAttribute="leading" id="nti-bQ-FCY"/>
                 <constraint firstItem="d62-w1-bhf" firstAttribute="top" secondItem="JPA-Xh-G0Z" secondAttribute="top" id="pDc-QG-4zY"/>
                 <constraint firstAttribute="bottom" secondItem="xdl-ru-Qlr" secondAttribute="bottom" id="v1t-7C-Wdc"/>
                 <constraint firstItem="d62-w1-bhf" firstAttribute="leading" secondItem="rJf-fM-JEe" secondAttribute="trailing" id="wOh-Mw-Z8P"/>
@@ -567,6 +643,8 @@
         <image name="buyButton.png" width="82" height="82"/>
         <image name="checkstories.png" width="185" height="185"/>
         <image name="dailyStory.png" width="185" height="185"/>
+        <image name="feedButton.png" width="185" height="185"/>
+        <image name="forward.png" width="40" height="40"/>
         <image name="home.jpg" width="960" height="636"/>
         <image name="logout.png" width="80" height="80"/>
         <image name="mapIcon.png" width="40" height="40"/>

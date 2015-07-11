@@ -11,7 +11,6 @@
 @interface ChapterRow : UITableViewCell
 
 @property (nonatomic, strong) IBOutlet UIView *storyRowView;
-
 @property (nonatomic, weak) IBOutlet UILabel *chapterRowName;
 @property (nonatomic, weak) IBOutlet UILabel *chapterRowAuthor;
 @property (nonatomic, weak) IBOutlet UIImageView *chapterRowUser;

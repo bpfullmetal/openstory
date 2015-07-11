@@ -87,6 +87,15 @@
 	[self addMessageFromRemoteNotification:userInfo updateUI:YES];
 }
 
+// NOT SURE WHAT THESE ARE HERE FOR.
+-(void) askForLocation{
+    
+}
+
+-(void) askForNotifications{
+    
+}
+
 - (void)addMessageFromRemoteNotification:(NSDictionary*)userInfo updateUI:(BOOL)updateUI
 {
 	/*NSString *alertValue = [[userInfo valueForKey:@"aps"] valueForKey:@"alert"];
@@ -125,7 +134,6 @@
         NSURLSessionDataTask *locationTask = [locationSession dataTaskWithURL:[NSURL URLWithString:fullURL] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             
             dispatch_sync(dispatch_get_main_queue(), ^{
-                NSString *datastring = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                 NSError *error = nil;
                 NSArray *fenceArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &error];
                 for (NSDictionary *fence in fenceArray){
@@ -144,35 +152,6 @@
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    /*lati = [[NSString alloc] initWithFormat:@"%g", newLocation.coordinate.latitude];
-    longi = [[NSString alloc] initWithFormat:@"%g", newLocation.coordinate.longitude];
-    cLocation = newLocation;
-    [cLocationManager stopUpdatingLocation];
-    
-    NSString *fullURL = [NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/updatelocation.php?user=%@&lati=%@&longi=%@", [[NSUserDefaults standardUserDefaults]objectForKey:@"user id"],lati,longi];
-    if (storyCheck == 1){
-        fullURL = [NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/backgroundcheck.php?user=%@&lati=%@&longi=%@", [[NSUserDefaults standardUserDefaults]objectForKey:@"user id"],lati,longi];
-    }
-    
-    NSURLSession *locationSession = [NSURLSession sharedSession];
-    NSURLSessionDataTask *locationTask = [locationSession dataTaskWithURL:[NSURL URLWithString:fullURL] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            NSString *datastring = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"datastring: %@", datastring);
-            NSError *error = nil;
-            NSArray *fenceArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &error];
-            storyCheck = 0;
-            for (NSDictionary *fence in fenceArray){
-                CLRegion *region = [self dictToRegion:fence];
-                [self.geofences addObject:region];
-                NSLog(@"region: %@", region);
-            }
-        });
-    }];
-    
-    [locationTask resume];
-    NSLog(@"updating");*/
     static BOOL firstTime=TRUE;
     if(firstTime)
     {
@@ -182,7 +161,7 @@
         {
             [monitoredRegions enumerateObjectsUsingBlock:^(CLRegion *region,BOOL *stop)
              {
-                 NSString *identifer = region.identifier;
+                 //NSString *identifer = region.identifier;
                  CLLocationCoordinate2D centerCoords =region.center;
                  CLLocationCoordinate2D currentCoords= CLLocationCoordinate2DMake(newLocation.coordinate.latitude,newLocation.coordinate.longitude);
                  CLLocationDistance radius = region.radius;

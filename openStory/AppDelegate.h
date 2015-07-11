@@ -16,6 +16,7 @@ NSString *selectedChapter;
 NSString *selectedUser;
 NSString *selectedChapterOrder;
 NSArray *chapterArray;
+NSArray *feedInfoArray;
 NSArray *pullStoryArray;
 NSArray *likesArray;
 NSString *mapStoryName;

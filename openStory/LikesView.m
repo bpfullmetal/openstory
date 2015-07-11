@@ -52,7 +52,7 @@
     [lRow.likesUserImage.layer setCornerRadius:15];
     [lRow.likesUserImage.layer setMasksToBounds:YES];
     NSURL *ImageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/userimages/%@_userimage.jpg", [item objectForKey:@"liker"]]];
-    [lRow.likesUserImage setImageWithURL:ImageURL placeholderImage:[UIImage imageNamed:@"placeHolder.png"]];
+    [lRow.likesUserImage sd_setImageWithURL:ImageURL placeholderImage:[UIImage imageNamed:@"placeHolder.png"]];
     
     
     lRow.likesUserImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -82,7 +82,7 @@
 
 - (void)like{
     NSURLSession *likeSession = [NSURLSession sharedSession];
-    NSURLSessionDataTask *likeTask = [likeSession dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/like.php?cid=%@&uid=%@&fid=0", selectedChapter, selectedUser]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSURLSessionDataTask *likeTask = [likeSession dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/like.php?cid=%@&uid=%@&fid=0", selectedChapter, userID]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         dispatch_sync(dispatch_get_main_queue(), ^{
             NSString *datastring = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             NSLog(@"like data: %@", datastring);
@@ -97,7 +97,7 @@
 
 - (void)unlike{
     NSURLSession *unlikeSession = [NSURLSession sharedSession];
-    NSURLSessionDataTask *unlikeTask = [unlikeSession dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/unlike.php?cid=%@&uid=%@", selectedChapter, selectedUser]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    NSURLSessionDataTask *unlikeTask = [unlikeSession dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/unlike.php?cid=%@&uid=%@", selectedChapter, userID]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         dispatch_sync(dispatch_get_main_queue(), ^{
             [likeIt setBackgroundImage:[UIImage imageNamed:@"likeoff.png"] forState:UIControlStateNormal];
             likeIt.alpha = 0.4;
@@ -120,7 +120,7 @@
 }
 
 - (void)getChapterLikes{
-    
+    userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"user id"];
     NSURLSession *likesSession = [NSURLSession sharedSession];
     NSURLSessionDataTask *likesTask = [likesSession dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/getlikes.php?id=%@", selectedChapter]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -131,7 +131,7 @@
             NSLog(@"likesArray: %@", likesArray);
             for(NSDictionary *item in likesArray){
                 
-                if ([[item objectForKey:@"liker"] isEqualToString:selectedUser]){
+                if ([[item objectForKey:@"liker"] isEqualToString:userID]){
                     [likeIt setBackgroundImage:[UIImage imageNamed:@"likeon.png"] forState:UIControlStateNormal];
                     likeIt.alpha = 1.0;
                 }

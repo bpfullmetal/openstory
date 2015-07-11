@@ -88,7 +88,7 @@
         
         NSString *post = [NSString stringWithFormat: @"name=%@&text=%@", cTitle, txtString];
         NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-        NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     
     NSString *fullURL = [NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/uploadchapter.php?userId=%@&lat=%@&long=%@&order=%@&weather=%d&storyId=%@", userId, lati, longi, order, 0, selectedStory ];
     
@@ -427,7 +427,7 @@
     [chapRow.chapterRowUser.layer setMasksToBounds:YES];
     if (selectedUser != userID ){
     NSURL *ImageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/userimages/%@_userimage.jpg", [item objectForKey:@"chapter_user"]]];
-    [chapRow.chapterRowUser setImageWithURL:ImageURL placeholderImage:[UIImage imageNamed:@"placeHolder.png"]];
+    [chapRow.chapterRowUser sd_setImageWithURL:ImageURL placeholderImage:[UIImage imageNamed:@"placeHolder.png"]];
     }
     
     

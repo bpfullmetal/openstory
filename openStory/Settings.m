@@ -119,7 +119,7 @@
     
     NSString *post = [NSString stringWithFormat: @"user=%@&pass=%@", newusername.text, userpass.text];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     
     NSMutableURLRequest *userRequest = [[NSMutableURLRequest alloc] init];
     
@@ -249,7 +249,7 @@
     
     NSString *post = [NSString stringWithFormat: @"pass=%@&newpass=%@", oldPass.text, newPass.text];
     NSData *postData = [post dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     
     NSMutableURLRequest *passwordRequest = [[NSMutableURLRequest alloc] init];
     
@@ -991,8 +991,8 @@
 }
 
 - (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    CGPoint touchLocation = [touch locationInView:self.view];
+    //UITouch *touch = [touches anyObject];
+    //CGPoint touchLocation = [touch locationInView:self.view];
     if(sideNav.frame.origin.x >= 0 || [slideDirection isEqualToString: @"right"]){
         [self replaceLeftConstraintOnView:sideNav withConstant:-1];
         [self animateSettings];

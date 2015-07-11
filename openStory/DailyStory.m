@@ -329,18 +329,14 @@
                 NSString *cName = [item objectForKey:@"chapter_name"];
                 selectedChapter = cId;
             
-            
-            //UIImageView *newImage = [[UIImageView alloc]init];
-            
             NSURL *ImageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/userimages/%@_userimage.jpg", [item objectForKey:@"chapter_user"]]];
-            
-            //[newImage setImageWithURL:ImageURL placeholderImage:[UIImage imageNamed:@"placeHolder.png"]];
             
             if (type == 1){
                 authorImage.contentMode = UIViewContentModeScaleAspectFill;
                 authorImage.clipsToBounds = YES;
                 authorImage.layer.cornerRadius = 28;
-                [authorImage setImageWithURL:ImageURL];
+                [authorImage sd_setImageWithURL:ImageURL];
+                //[authorImage setImageWithURL:ImageURL]; USE THIS IS SD_SETIMAGE DOESN'T WORK
                 NSLog(@"image url: %@", ImageURL);
                 authorUsername.text = [[item objectForKey:@"chapter_author"] uppercaseString];
                 [profileButton addTarget:self
@@ -353,7 +349,8 @@
                 subAuthorImage.contentMode = UIViewContentModeScaleAspectFill;
                 subAuthorImage.clipsToBounds = YES;
                 subAuthorImage.layer.cornerRadius = 28;
-                [subAuthorImage setImageWithURL:ImageURL];
+                [authorImage sd_setImageWithURL:ImageURL];
+                //[subAuthorImage setImageWithURL:ImageURL]; USE THIS IS SD_SETIMAGE DOESN'T WORK
                 subAuthorUsername.text = [[item objectForKey:@"chapter_author"] uppercaseString];
                 [subProfileButton addTarget:self
                                   action:@selector(viewProfile:)
@@ -398,21 +395,6 @@
             [dailyScroll setContentOffset:CGPointMake(640, 0) animated:YES];
         }
     }
-    
-    
-    
-    /*NSURLSession *chapterSession = [NSURLSession sharedSession];
-    NSURLSessionDataTask *textTask = [chapterSession dataTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.fullmetalworkshop.com/openstory/getchapter.php?story=%@&order=%@&chapter=%@", selectedStory, cOrder, cId]] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSString *chapterText = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            
-            
-            
-            
-        });
-    }];
-    
-    [textTask resume];*/
 }
 
 - (void) viewProfileFromLikes{
@@ -420,8 +402,6 @@
         NSLog(@"selectee user: %@", selectedUser);
         [profileBox addSubview:userProfile.view];
         [userProfile makeProfile:selectedUser type:2];
-        
-        
         
         [self storyBoxSlideUp];
     }
